@@ -1,9 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Bolo Aniversário</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Bolo Aniversário</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.bolo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.camada {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: 0.8s ease;
+}
+
+.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pequena {
+    width: 120px;
+    height: 60px;
+    background: #ffa3d1;
+    border-radius: 10px;
+}
+
+.media {
+    width: 170px;
+    height: 70px;
+    background: #ff85c1;
+    border-radius: 10px;
+}
+
+.grande {
+    width: 220px;
+    height: 80px;
+    background: #ff69b4;
+    border-radius: 10px;
+}
+
+.camada::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    background: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.camada::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+}
+
+.vela {
+    width: 10px;
+    height: 40px;
+    background: white;
+    position: absolute;
+    top: -60px;
+    opacity: 0;
+    transition: 1s ease;
+}
+
+.fogo {
+    width: 15px;
+    height: 20px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fogo 0.3s infinite alternate;
+}
+
+@keyframes fogo {
+    from {
+        transform: translateX(-50%) scale(1);
+        background: orange;
+    }
+    to {
+        transform: translateX(-50%) scale(1.2);
+        background: yellow;
+    }
+}
+
+.mensagem {
+    font-size: 48px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: 1s ease;
+    background: linear-gradient(45deg, gold, white, gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+</style>
+
 </head>
 <body>
 
@@ -23,6 +146,22 @@
 
 </div>
 
-<script src="script.js"></script>
+<script>
+const pequena = document.querySelector(".pequena");
+const media = document.querySelector(".media");
+const grande = document.querySelector(".grande");
+const vela = document.querySelector(".vela");
+const mensagem = document.querySelector(".mensagem");
+
+setTimeout(() => pequena.classList.add("mostrar"), 500);
+setTimeout(() => media.classList.add("mostrar"), 1500);
+setTimeout(() => grande.classList.add("mostrar"), 2500);
+setTimeout(() => vela.style.opacity = "1", 3500);
+setTimeout(() => {
+    mensagem.style.opacity = "1";
+    mensagem.style.transform = "translateX(0)";
+}, 4500);
+</script>
+
 </body>
 </html>
